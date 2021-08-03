@@ -5,13 +5,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 module.exports = {
 	title: 'dbt-sqlserver-docs',
 	tagline: 'dbt adapter for sql server',
-	url: 'https://timdenouden.github.io/',
-	baseUrl: '/dbt-sqlserver-docs/',
+	url: 'https://dbt-msft.github.io/',
+	baseUrl: '/dbt-msft-docs/',
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
-	organizationName: 'timdenouden', // Usually your GitHub org/user name.
-	projectName: 'dbt-sqlserver-docs', // Usually your repo name.
+	organizationName: 'dbt-msft', // Usually your GitHub org/user name.
+	projectName: 'dbt-msft-docs', // Usually your repo name.
 	themeConfig: {
 		navbar: {
 			title: 'dbt-sqlserver-docs',
