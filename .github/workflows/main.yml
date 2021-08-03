@@ -39,7 +39,7 @@ jobs:
           ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY }}
       - name: Release to GitHub Pages
         env:
-          USE_SSH: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Fixed ssh error via https://github.com/tlienart/Franklin.jl/issues/644
           GIT_USER: git
         # using private email for now as ssh was configured for this user. Should replace with service account in the future.
         run: |
