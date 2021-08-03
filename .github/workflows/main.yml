@@ -44,7 +44,7 @@ jobs:
         # using private email for now as ssh was configured for this user. Should replace with service account in the future.
         run: |
           git config --global user.email "timothy.denouden@gmail.com"
-          git config --global user.name "Tim Den Ouden"
+          git config --global user.name "Timothy DenOuden"
           if [ -e yarn.lock ]; then
             yarn install --frozen-lockfile
           elif [ -e package-lock.json ]; then
