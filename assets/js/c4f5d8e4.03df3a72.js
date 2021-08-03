@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdbt_sqlserver_docs=self.webpackChunkdbt_sqlserver_docs||[]).push([[195],{2841:function(e,r,s){s.r(r),s.d(r,{default:function(){return u}});var t=s(7294),n=s(5977),c=s(2263);function u(){var e=(0,c.Z)().siteConfig;return t.createElement(n.l_,{to:e.baseUrl+"docs/dbt-sqlserver"})}}}]);
