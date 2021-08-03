@@ -43,6 +43,10 @@ module.exports = {
 							label: 'dbt-sqlserver',
 							to: '/docs/dbt-sqlserver',
 						},
+						{
+							label: 'dbt-synapse',
+							to: '/docs/dbt-synapse',
+						}
 					],
 				},
 				{
@@ -60,6 +64,10 @@ module.exports = {
 						{
 							label: 'dbt-sqlserver GitHub',
 							href: 'https://github.com/dbt-msft/dbt-sqlserver',
+						},
+						{
+							label: 'dbt-synapse GitHub',
+							href: 'https://github.com/dbt-msft/dbt-synapse',
 						}
 					],
 				},
