@@ -2,7 +2,7 @@
 
 This website is built as a companion for [dbt-sqlserver](https://github.com/dbt-msft/dbt-sqlserver) using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-The latest version of this site is hosted via Github Pages at [https://timdenouden.github.io/dbt-sqlserver-docs/](https://timdenouden.github.io/dbt-sqlserver-docs/)
+The latest version of this site is hosted via Github Pages at [https://dbt-msft.github.io/dbt-msft-docs/](https://dbt-msft.github.io/dbt-msft-docs/)
 
 ## Working Branches
 Name | Usage
