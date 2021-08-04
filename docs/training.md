@@ -1,6 +1,6 @@
 ---
 title: dbt Training Crash Course
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 
