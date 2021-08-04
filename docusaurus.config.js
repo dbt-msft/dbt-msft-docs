@@ -22,9 +22,15 @@ module.exports = {
 			items: [
 				{
 					type: 'doc',
-					docId: 'dbt-sqlserver',
+					docId: 'dbt-sqlserver/overview',
 					position: 'left',
 					label: 'dbt-sqlserver',
+				},
+				{
+					type: 'doc',
+					docId: 'dbt-synapse/overview',
+					position: 'left',
+					label: 'dbt-synapse',
 				},
 				{
 					href: 'https://github.com/dbt-msft/dbt-sqlserver',
@@ -41,11 +47,11 @@ module.exports = {
 					items: [
 						{
 							label: 'dbt-sqlserver',
-							to: '/docs/dbt-sqlserver',
+							to: '/docs/dbt-sqlserver/overview',
 						},
 						{
 							label: 'dbt-synapse',
-							to: '/docs/dbt-synapse',
+							to: '/docs/dbt-synapse/overview',
 						}
 					],
 				},

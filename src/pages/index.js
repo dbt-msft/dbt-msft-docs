@@ -5,5 +5,5 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function Home() {
 	const { siteConfig } = useDocusaurusContext();
-	return <Redirect to={`${siteConfig.baseUrl}docs/dbt-sqlserver`} />;
+	return <Redirect to={`${siteConfig.baseUrl}docs/training`} />;
 }
