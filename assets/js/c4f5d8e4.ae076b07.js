@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdbt_sqlserver_docs=self.webpackChunkdbt_sqlserver_docs||[]).push([[195],{2841:function(e,t,r){r.r(t),r.d(t,{default:function(){return u}});var s=r(7294),n=r(5977),c=r(2263);function u(){var e=(0,c.Z)().siteConfig;return s.createElement(n.l_,{to:e.baseUrl+"docs/better_together_pitch"})}}}]);
