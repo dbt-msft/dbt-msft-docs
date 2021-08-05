@@ -14,20 +14,26 @@ module.exports = {
 	projectName: 'dbt-msft-docs', // Usually your repo name.
 	themeConfig: {
 		navbar: {
-			title: 'dbt-sqlserver-docs',
+			title: 'dbt-msft-docs',
 			logo: {
-				alt: 'My Site Logo',
+				alt: 'dbt Logo',
 				src: 'img/dbt-logo.svg',
 			},
 			items: [
 				{
 					type: 'doc',
-					docId: 'dbt-sqlserver',
+					docId: 'dbt-sqlserver/overview',
 					position: 'left',
 					label: 'dbt-sqlserver',
 				},
 				{
-					href: 'https://github.com/dbt-msft/dbt-sqlserver',
+					type: 'doc',
+					docId: 'dbt-synapse/overview',
+					position: 'left',
+					label: 'dbt-synapse',
+				},
+				{
+					href: 'https://github.com/dbt-msft',
 					label: 'GitHub',
 					position: 'right',
 				}
@@ -41,11 +47,11 @@ module.exports = {
 					items: [
 						{
 							label: 'dbt-sqlserver',
-							to: '/docs/dbt-sqlserver',
+							to: '/docs/dbt-sqlserver/overview',
 						},
 						{
 							label: 'dbt-synapse',
-							to: '/docs/dbt-synapse',
+							to: '/docs/dbt-synapse/overview',
 						}
 					],
 				},
@@ -86,7 +92,7 @@ module.exports = {
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
 					editUrl:
-						'https://github.com/dbt-msft/dbt-msft-docs',
+						'https://github.com/dbt-msft/dbt-msft-docs/tree/main',
 				},
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),
