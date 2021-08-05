@@ -92,7 +92,7 @@ module.exports = {
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
 					editUrl:
-						'https://github.com/dbt-msft/dbt-msft-docs/tree/main',
+						'https://github.com/dbt-msft/dbt-msft-docs/tree/documentation',
 				},
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),
