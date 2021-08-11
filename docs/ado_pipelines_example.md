@@ -1,5 +1,5 @@
 ---
-title: ado_pipelines_example
+title: Azure DevOps Pipelines Example
 sidebar_position: 5
 ---
 
