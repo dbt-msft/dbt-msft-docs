@@ -1,6 +1,6 @@
 ---
 title: ado_pipelines_example
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 # ado_pipelines_example
