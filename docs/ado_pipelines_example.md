@@ -9,7 +9,7 @@ example pipelines for deploying dbt via Azure DevOps pipelines
 ## Overview
 
 ### Azure CLI  task
-Check out the `.yml` files in the [`build/` dir](build/) for our pipelines.
+Check out the `.yml` files in the [`build/` dir](https://github.com/dbt-msft/ado_pipelines_example/tree/main/build) for our pipelines.
 
 Once you have an ADO ARM Service Connection that has owner permission on the db, the work is done. With the `AzureCLI` task and the `azureSubscription` param, you never have to call `az login`, it will do that for you automatically.
 
@@ -31,7 +31,7 @@ To make the secret pipeline variables available to the task, you have to map the
 
 ### profile tweaks
 
-To avoid uploading a secure file containing our [`build/profiles.yml`](build/profiles.yml), we just added three environment variable references to the only target. This allows us to just set the server and db within the Azure Pipeline itself.
+To avoid uploading a secure file containing our [`build/profiles.yml`](https://github.com/dbt-msft/ado_pipelines_example/blob/main/packages.yml), we just added three environment variable references to the only target. This allows us to just set the server and db within the Azure Pipeline itself.
 
 
 ```yaml
