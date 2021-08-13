@@ -17,7 +17,7 @@ module.exports = {
 			title: 'dbt-msft-docs',
 			logo: {
 				alt: 'dbt Logo',
-				src: 'img/dbt-logo.svg',
+				src: 'img/dbt-msft-logo.png',
 			},
 			items: [
 				{
@@ -78,7 +78,7 @@ module.exports = {
 					],
 				},
 			],
-			copyright: `Copyright © ${new Date().getFullYear()} Timothy Den Ouden. dbt logo Copyright © 2021 dbt Labs. Built with Docusaurus.`,
+			copyright: `Copyright © ${new Date().getFullYear()} dbt-msft. Built with Docusaurus.`,
 		},
 		prism: {
 			theme: lightCodeTheme,
