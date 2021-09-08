@@ -151,6 +151,9 @@ WITH dbt__CTE__INTERNAL_test AS (
 SELECT COUNT(*) FROM dbt__CTE__INTERNAL_test
 ```
 
+## 5) `sp_rename` unsupported in Synapse Serverless pools
+
+You can't rename views and external tables in Synapse serverless SQL pools. It is however, supported in dedicated SQL pools. See [MicrosoftDocs/sql-docs/pull/6793](https://github.com/MicrosoftDocs/sql-docs/pull/6793)
 # Other Differences
 
 ## 1) `tempdb.INFORMATION_SCHEMA.COLUMNS`
