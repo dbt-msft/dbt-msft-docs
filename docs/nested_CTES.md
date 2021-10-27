@@ -1,4 +1,4 @@
-# Three reasons why TSQL needs (actual) nested CTES
+#  Nested CTES in TSQL, a treatise
 
 ## Ask
 
@@ -118,6 +118,9 @@ SELECT * FROM goku_outer
 
 ### more flexibility with SQL templating engines
 
+Quote from Jacob Matson ([@matsonj](https://github.com/matsonj)):
+
+> Enabling "Nested CTEs" allows for an improved "application/human interface". Not for technical users, per se, but for analysts using 3rd party tools such as [dbt](https://www.getdbt.com/) but also for power users of TSQL applications. An advanced pattern in many tools (including at Simetric, where I work) is providing the capability for end-users to create single queries and then string them together in templates (lego blocks). This pattern is quite difficult in SQL Server because CTEs either cannot be used at all or the application developers must work around this capability gap. This makes the underlying queries more difficult for humans to read and therefor more difficult to debug. This also makes SQL Server less attractive as self-service analytics continue to evolve and power users continue to get closer to "raw SQL" inside their respective applications.
 
 #### Background: Templating in HTML
 
