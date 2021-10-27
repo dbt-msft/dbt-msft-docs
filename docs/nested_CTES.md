@@ -1,5 +1,5 @@
 ---
-title: Contributing to dbt-msft-docs
+title: Nested CTES in TSQL, a treatise
 sidebar_position: 6
 ---
 
