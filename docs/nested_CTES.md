@@ -85,9 +85,9 @@ SELECT * FROM goku_outer
 IMHO, this is excessive and it makes query injection via templating needlessly difficult, especially given that both nested subqueries and sequentially nested CTEs are already supported.
 
 
-# Reasons (ordered by ease of explanation)
+## Reasons (ordered by ease of explanation)
 
-## 1. Everyone else does it
+### 1. Everyone else does it
 
 The open-source data engineering ecosystem is growing at a breakneck speed -- especially tools that work with cloud data warehouses (e.g. [Airflow](https://airflow.apache.org/), [dbt](https://www.getdbt.com/), [SQLFluff](https://www.sqlfluff.com/), and [Great Expectations](https://greatexpectations.io/))
 
@@ -111,7 +111,7 @@ The below table shows which databases support this convention.
 
 
 
-### Low-hanging, Syntactic Fruit
+### 2. Low-hanging, Syntactic Fruit
 
 Both nested subqueries and sequentially nested CTEs are already supported, so IMO, it isn't a large amount of effor to support this.
 
@@ -125,7 +125,7 @@ WITH goku_outer AS (
 SELECT * FROM goku_outer
 ```
 
-### more flexibility with SQL templating engines
+### 3. more flexibility with SQL templating engines
 
 Quote from Jacob Matson ([@matsonj](https://github.com/matsonj)):
 
@@ -170,4 +170,4 @@ In fact, the magic of dbt is just Jinja templating. dbt goes one step further an
 
 If TSQL could allow wrapping arbitrary SELECT queries within a CTE, it would have the following effects on dbt custom adapter maintenance:
 - dbt-sqlserver and dbt-synapse get the benefits of [ephemeral](https://docs.getdbt.com/docs/building-a-dbt-project/building-models/materializations#ephemeral) materializations and dbt tests without extra work
-- dbt-msft users can take advantage of community-supported adapters with more confidence (many package maintainers make heavy use of CTE-query-wrapping)
+- dbt-msft users can take advantage of community-supported adapters with more confidence (many package maintainers make heavy use of CTE-query-wrapping)****
