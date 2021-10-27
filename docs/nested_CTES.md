@@ -1,3 +1,8 @@
+---
+title: Contributing to dbt-msft-docs
+sidebar_position: 6
+---
+
 #  Nested CTES in TSQL, a treatise
 
 ## Ask
@@ -152,12 +157,13 @@ Below is a trivial example of generating an HTML list with a Python list variabl
 Templating is increasingly popular in data warehouse development. Some great use cases:
 - parameterizing database names for deploying to multiple environments
 - making repetitive, boilerplate SQL into something more observable
-- abstract logic into
-- injecting SQL
+- model abstraction logic
+- injecting dynamic SQL
+- functional code chaining concepts
 
-In fact, the magic of dbt is just Jinja templating. dbt goes one step further and templatizing your DDL statements like `CREATE TABLE AS` and `CREATE VIEW AS` allowing users to just focus on SELET queries. ([to read more about the power of dbt](https://docs.getdbt.com/docs/introduction#what-makes-dbt-so-powerful)
+In fact, the magic of dbt is just Jinja templating. dbt goes one step further and templatizing your DDL statements like `CREATE TABLE AS` and `CREATE VIEW AS` allowing users to just focus on SELECT queries. ([to read more about the power of dbt](https://docs.getdbt.com/docs/introduction#what-makes-dbt-so-powerful))
 
 
 If TSQL could allow wrapping arbitrary SELECT queries within a CTE, it would have the following effects on dbt custom adapter maintenance:
-- dbt-sqlserver and dbt-synapse get `ephemeral` materializations and dbt tests without extra work
-- dbt-msft users can take adavantage of community-supported adapters with more confidence (many package maintainers make heavy use of CTE-query-wrapping)
+- dbt-sqlserver and dbt-synapse get the benefits of [ephemeral](https://docs.getdbt.com/docs/building-a-dbt-project/building-models/materializations#ephemeral) materializations and dbt tests without extra work
+- dbt-msft users can take advantage of community-supported adapters with more confidence (many package maintainers make heavy use of CTE-query-wrapping)
