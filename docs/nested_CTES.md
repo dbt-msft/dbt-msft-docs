@@ -5,7 +5,11 @@ sidebar_position: 6
 
 #  Nested CTES in TSQL, a treatise
 
-## Ask
+## Background
+
+### TL;DR
+
+Allowing nested WITH statements (examples given below) would enable MSFT customers to fully take advantage of templating engines and their respective ecosystems. These templating engines are already very popular on non-MSFT database products.
 
 Today in TSQL, the below example is not correct TSQL, but the following two are.
 
