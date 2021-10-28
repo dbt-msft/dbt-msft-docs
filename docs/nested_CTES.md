@@ -33,7 +33,7 @@ SELECT * FROM goku_outer
 WITH goku_inner AS (
     SELECT 9001 as power_level
 ),
-WITH goku_outer AS (
+goku_outer AS (
     SELECT * FROM goku_inner
 )
 SELECT * FROM goku_outer
