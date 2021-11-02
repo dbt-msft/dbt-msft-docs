@@ -100,24 +100,128 @@ You should test this by closing VSCode, then opening the `jaffle_shop` repo
 
 ## Extensions
 
+In this section, I'll go over some of the extensions that our team uses. Each extension requires that you install it from within VSCode, and most will require adding additional settings to your `.vscode/settings.json`
+
 ### vscode-dbt
 
-the [vscode-dbt extension](https://marketplace.visualstudio.com/items?itemName=bastienboutonnet.vscode-dbt)
+the [vscode-dbt extension](https://marketplace.visualstudio.com/items?itemName=bastienboutonnet.vscode-dbt) is great because it provides a few things:
+1. syntax highlighting for SQL with jinja in it (also for `.md`'s and `.yml`s), and
+2. helpful jinja snippets will save you a lot of time
+
+
+To get this working you should add the following to your `.vscode/settings.json`
+
+There's an optional addition I strongly recommend `"**/target/**": "",`, which will not do any syntax highlighting/colorization to any file in the `target/` folder. This prevents me from making the classic mistake where I start editing a compiled model file, instead of the original model file. Then when I call `dbt run` my changes aren't incorporated, but instead overwritten by the unchanged logic of the model file. with this setting you know something is wrong then the sql has no coloring.
+
+```json
+"files.associations": {
+    // the pattern on the left side can be whatever you want: e.g.
+    "**/jaffle_shop/**/*.sql": "jinja-sql", // just the .sqlfiles inside of jaffle_shop, or
+    "*.sql": "jinja-sql", // all .sql files
+
+    // optional: don't format models in `target/` dir
+    "**/target/**": "",
+    // I don't personally use these, but you can also have jinja work for `yaml` and `md` files
+    "**/<dbt-project-dir>/**/*.yaml": "jinja-yaml",
+     "**/<dbt-project-dir>/**/*.yml": "jinja-yaml",
+    "**/<dbt-project-dir>/**/docs/**/*.md": "jinja-md"
+
+    // the vscode-dbt docs say you may need this
+    "editor.quickSuggestions": {
+    "strings": true
+    }
+}
+```
+
+You'll know it is working when you open a `.sql` model and, in the bottom toolbar on the right it says now says "Jinja SQL" instead of "SQL".
 
 ### Find Related
 
-the [find-related extension](https://marketplace.visualstudio.com/items?itemName=amodio.find-related)
+the [find-related extension](https://marketplace.visualstudio.com/items?itemName=amodio.find-related) allows you to use regular expressions to correspond a `.sql` file in your `models/` directory to it's `compiled` and `run` counterparts in the `target/` folder. I find this a huge timesaver compared to manually naviagting the `target/` dir in the explorer sidebar.
+
+After you install the `find-related` extension, you can enable it by adding the following to your `.vscode/settings.json`. There's no dbt or jinja magic going on here, just regex. So you may need to tweak these settings if they're not working for you.
+
+Once it is set up, you can type `Option+R` on any model file to jump to it's compiled version. While on a compiled model file, `Option+R` will take you to it's `target/run` counterpart.
+
+
+```json
+{
+    // this is so you can easily jump to your compiled SQL files
+    "findrelated.workspaceRulesets": [
+        {
+            "name": "sql",
+            "rules": [
+                {
+                    "pattern": "^(.*/)?models/(.*/)?(.+\\.sql)$",
+                    "locators": [
+                        "**/compiled/**/$3"
+                    ]
+                },
+                {
+                    "pattern": "^(.*/)?compiled/(.*/)?(.+\\.sql)$",
+                    "locators": [
+                        "**/run/**/$3"
+                    ]
+                },
+                {
+                    "pattern": "^(.*/)?run/(.*/)?(.+\\.sql)$",
+                    "locators": [
+                        "**/models/**/$3"
+                    ]
+                }
+            ]
+        }
+    ],
+    "findrelated.applyRulesets": [
+        "sql"
+    ]
+    }
+```
 
 ### Rainbow CSV
 
-the [rainbow-csv extension](https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv)
+the [rainbow-csv extension](https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv) just highlights csvs where each column is it's own color. It's great to use when you have a csv where character-width varies greatly within a column. You can also hover over a value to see what column it belongs to. Very helpful for seeds!
+
+### SQL Fluff
+
+Our team has recently implemented sqlfluff linting for our dbt projects, especially because versions `0.6.5` and greater now support TSQL. There's also a great VCcode extenstion.
+
+If you already have a `.sqlfluff` and `.sqlfluffignore` configured and working, it is enough to install [vscode-sqlfluff](https://marketplace.visualstudio.com/items?itemName=dorzey.vscode-sqlfluff) and add the following to your `settings.json`
+
+```json
+    // you get this by calling `where sqlfluff` after calling `pip install sqlfluff`
+    "sql.linter.executablePath": "<PATH_TO_YOUR_SQLFLUFF_FROM_WHICH_SQLFLUFF_COMMAND",
+    "sql.linter.run": "onType" // alternatively "onSave" if you'd like it less frequent 
+```
 
 ## Settings
 
-## Usage / Startup
+### Extra settings
+Here's some other settings that I recommend:
 
 
+```json
+        // easier to see if there are unsaved changed
+        "workbench.editor.highlightModifiedTabs": true,
+        "workbench.editor.labelFormat": "medium",
+        // make Command Prompt the default shell for Windows instead of Powershell
+        "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
+        
+        // make a vertical line so I don't make lines too long
+        "editor.rulers": [80],
+        // show whitespace as dots
+        // (easier to count out indentation and spot trailing whitesapce)
+        "editor.renderWhitespace": "all",
+```
 
+### Workspace-level settings files
 
+Sometimes it isn't convenient to have a `.vscode/settings.json`, such as when you:
+1. have a subset of settings under source control that you'd like all users to be using (it doesn't make sense to source control your specific Python path)
+2. you prefer [multi-root workspaces](https://code.visualstudio.com/docs/editor/multi-root-workspaces) a.k.a. more than one repo open at at time (great for when you also want your `.dbt/profiles.yml` close at hand)
+
+A worksapce settings file has the extension `.code-workspace` and encapsulates all the configuration you might find in a `.vscode/` dir into a single file. This file also works as a shortcut that you can double click or navigate to to bring up all your settings.
+
+If someone wants more info on this free free to open an issue. For now I'll leave this as as stub.
 
 
