@@ -9,6 +9,17 @@ sidebar_position: 2
 
 When our team first started using the dbt CLI, we started with Claire's well-loved discourse post, [How we set up our computers for working on dbt project](https://discourse.getdbt.com/t/how-we-set-up-our-computers-for-working-on-dbt-projects/243). The post details how the dbt team uses Atom and iTerm 2 on macOS for an improved workflow. Many folks commented on how they acheived similar productivity using VSCode. I thought I'd consolidate some of this into a single article, and expand on it given the recent developments. I'm also going to add things to make it easier for working with Azure databases such as the Azure CLI and Azure Data Studio.
 
+### Goals
+
+Following this guide will enable the following behavior in VSCode (some points lifted from Claire's guide -- linked above)
+
+- a stable, reproducible Python environment for running dbt
+- syntax highlighting for SQL files with jinja in them
+- graying out the text of files that have compiled code in them, to help prevent you from editing compiled SQL (as opposed to your actual model)
+- quick switching b/w a model file and it's `compiled` and `run` counterparts 
+- allow  
+
+
 ### Prerequisite
 
 If you've never used VSCode with Python, I strongly recommend at least the first half of  Dan Taylor's [Get Productive with Python in Visual Studio Code](https://www.youtube.com/watch?v=PnOPp4DsY2w) talks. It covers a lot of the basics like installing Python, the Python extension, and the command pallette.
