@@ -1,6 +1,6 @@
 ---
 title: Using VSCode with dbt
-sidebar_position: 5
+sidebar_position: 2
 ---
 
 # Using dbt in VSCode
@@ -37,6 +37,13 @@ git clone https://github.com/dbt-labs/jaffle_shop.git
 Then, open the `jaffle_shop/` directory in VSCode.
 
 ## Python environment
+
+
+### Goal
+
+The goal of this section is to ensure that the right version of Python and dbt are always available right away when you open your dbt project in VSCode. Sounds simple, but below is a one-time setup guide on how to make it work
+
+### Walkthrough
 
 Python can be tricky get working in VSCode (and trickier to work on Windows). You OS likely already has a version of python installed, but this can be troublesome because you don't control it's version.
 
@@ -88,6 +95,8 @@ sqlfluff==0.7.1
 Now that you've done these two things, everytime you open the `jaffle_shop/` dir, in VSCode two things should happen:
 1. the Python extension activates right away (do you see the Python version listed alongside your environment name on the bottom info bar?)
 2. any terminal you open will auto-activate your `.dbtenv` and each line should begin with `(.dbtenv)`
+
+You should test this by closing VSCode, then opening the `jaffle_shop` repo
 
 ## Extensions
 
