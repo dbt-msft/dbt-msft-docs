@@ -52,7 +52,9 @@ Then, open the `jaffle_shop/` directory in VSCode.
 
 ### Goal
 
-The goal of this section is to ensure that the right version of Python and dbt are always available right away when you open your dbt project in VSCode. Sounds simple, but below is a one-time setup guide on how to make it work
+The goal of this section is to ensure that the right version of Python and dbt are always available right away when you open your dbt project in VSCode. Sounds simple, but below is a one-time setup guide on how to make it work. More context is that some folks have bundled this set up process into [bash scripts](https://discourse.getdbt.com/t/setting-up-your-local-dbt-run-environments/2353) and [Docker containers](https://discourse.getdbt.com/t/a-containerized-dbt-environment-for-your-team/2340).
+
+Some folks deem this problem so difficult as to justify having users use Docker containers, but I have yet to be convinced of that yet.
 
 ### Walkthrough
 
@@ -204,6 +206,10 @@ If you already have a `.sqlfluff` and `.sqlfluffignore` configured and working, 
     "sql.linter.executablePath": "<PATH_TO_YOUR_SQLFLUFF_FROM_WHICH_SQLFLUFF_COMMAND",
     "sql.linter.run": "onType" // alternatively "onSave" if you'd like it less frequent 
 ```
+
+### dbt Power User
+
+I personally haven't had time to use the [dbt Power User](https://marketplace.visualstudio.com/items?itemName=innoverio.vscode-dbt-power-user) extension, but folks have good things to say. I hope to try it out soon and folks are more than welcome make a Pull Request to this doc as they see fit.
 
 ## Settings
 
