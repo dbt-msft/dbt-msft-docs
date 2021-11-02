@@ -1,6 +1,6 @@
 ---
 title: Nested CTES in TSQL, a treatise
-sidebar_position: 6
+sidebar_position: 2
 ---
 
 #  Nesting queries with WITH clauses in TSQL, a treatise

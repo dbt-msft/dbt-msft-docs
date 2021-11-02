@@ -1,5 +1,5 @@
 ---
-title: Using VSCode
+title: Using VSCode with dbt
 sidebar_position: 5
 ---
 

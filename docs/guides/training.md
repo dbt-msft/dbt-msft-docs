@@ -1,6 +1,6 @@
 ---
-title: dbt Training Crash Course
-sidebar_position: 2
+title: dbt Azure SQL Crash Course
+sidebar_position: 1
 ---
 
 
