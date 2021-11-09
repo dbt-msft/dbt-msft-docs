@@ -41,10 +41,10 @@ Here we'll be using a version of the same repo that Fishtown uses for their trai
 
 ### VSCode
 
-1. Clone [this repo](https://github.com/chaerinlee1/jaffle_shop) in VSCode
+1. Clone [this repo](https://github.com/dbt-labs/jaffle_shop) in VSCode
    1. Open VSCode and type (`CTRL + Shift + P`) to access the command palette located at the top.
    2. Type `git: clone` and select the option.
-   3. Paste the git URL: `https://github.com/chaerinlee1/jaffle_shop` and hit enter.
+   3. Paste the git URL: `https://github.com/dbt-labs/jaffle_shop.git` and hit enter.
    4. Choose which folder you want your code to go in and click "Select Repository Location". I typically have all my repositories in `C:\Code`.
    6. A pop up message should appear on the lower right of VSCode asking if you would like to open the cloned repository. Click "Open".
    6. Go to the dbt_crash_course branch by clicking on the bottom left button on the window (it should say main or master) and choosing the dbt_crash_course branch.
