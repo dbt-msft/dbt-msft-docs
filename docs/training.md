@@ -4,13 +4,25 @@ sidebar_position: 2
 ---
 
 
-# dbt Training Crash Course
+# dbt-sqlserver: an introduction
 
-Very humbled to have you all here to check out what we've been working on these past few months. Hopefully y'all will think it is as cool and useful as we have!
+Below is a guide made originally by [@chaerinlee1](https://github.com/chaerinlee1) while she was still an intern in order to train teams internally. We thought it also could serve others as well. If you encounter any issues please [open an issue on dbt-msft-docs](https://github.com/dbt-msft/dbt-msft-docs) and we'll be happy to assist.
 
-This is a shortened version of the FIRST official training, so apologies for where the training could be rough around the edges. This version focuses on demonstrating how to **(1)** set up your environment, **(2)** connect your dbt project to a database, and **(3)** create some models with the dbt framework. There are some success stories already in that we now have four people on the team that know dbt (3 of whom are here today to help out and learn more).
+## Create (or choose) a database
 
+If you don't already have access to a database, I highly recommend the free tier of Azure SQL database. If you sign up for [Visual Studio Dev Essentials](https://visualstudio.microsoft.com/dev-essentials/), it provides an Azure subscription with $50 of credits.
 
+Follow the instruction in [this tutorial](https://docs.microsoft.com/en-us/azure/azure-sql/database/single-database-create-quickstart?tabs=azure-portal) and be sure to note down the server address and database name.
+
+As far as how you authenticate to the database, the SQL Admin username and password would be easiest, but this tutorial makes use of Azure Active Directory authentication via the Azure CLI. To enable this, be sure to set yourself as the Azure Active Directory Admin of the Azure SQL Server that you've created.
+
+One caveat with this free tier is that it does not support clusterd columnstore indexes. To work around this, you'll have to add the following snippet to your `dbt_project.yml`
+
+```yml
+models:
+  jaffle_shop:
+    +as_columnstore: false 
+```
 
 ## Set Up Local Environment
 
@@ -100,11 +112,11 @@ Ahead of the call if you could please download and install the following (if you
 1. Last step in the set-up is to log in to the database. **Below are instructions for Azure Data Studio, but if you're receving an error message you can try on SQL Server Management Studio (SSMS) too. Instructions are very similar!**
    1. Open Azure Data Studio and click on the first icon on the left side panel called "Connections".
    2. Click "Add Connection" and paste in the connection info below in the relevant fields. This info can also be found in `profiles.yml`
-      * Server: its-data-mart-dev-server.database.windows.net
-      * Authentication type: Azure Active Directory
-      * Account: Click the drop down menu, if you don't see your Avanade email then click "Add an account" and sign in like before
-      * Azure AD tenant: Avanade
-      * Database: Manually type "Marketing_Dev"
+      1. Server: `<MY-SERVER-NAME>.database.windows.net`
+      2. Authentication type: Azure Active Directory
+      3. Account: Click the drop down menu, if you don't see your Azure tenant email then click "Add an account" and sign in like before
+      4. Azure AD tenant: `<MY-AZURE-TENANT>`
+      5. Database: `<MY-DATABASE>`
    3. Click Connect
       1. You are now connected to the database! 
          * Note that there are tables in the database already. These are other people's tables that they created using their schema name. Yours will start to show up as you start creating your dbt models.
@@ -112,7 +124,7 @@ Ahead of the call if you could please download and install the following (if you
    1. The server you are connected to as well as the **Tables** and **Views** folders are both located on the left side of the page
       1. **To quickly query a table or view**: Go into the relevant folder, right click the name, and click "Select Top 1000".
       2. **To write a new query**: Right click the server, and click "New Query"
-   3. If you're wondering why you're not seeing your tables/views show up after running dbt commands in VSCode, you can right click on the **Tables** or **Views** folder and click "Refresh".
+   2. If you're wondering why you're not seeing your tables/views show up after running dbt commands in VSCode, you can right click on the **Tables** or **Views** folder and click "Refresh".
       * You can also do this to the server itself as well, but this might take longer.
 
 ## Tutorial
