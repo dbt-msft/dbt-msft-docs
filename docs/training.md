@@ -4,23 +4,29 @@ sidebar_position: 2
 ---
 
 
-# Avanade Training!
+# dbt Training Crash Course
 
 Very humbled to have you all here to check out what we've been working on these past few months. Hopefully y'all will think it is as cool and useful as we have!
 
 This is a shortened version of the FIRST official training, so apologies for where the training could be rough around the edges. This version focuses on demonstrating how to **(1)** set up your environment, **(2)** connect your dbt project to a database, and **(3)** create some models with the dbt framework. There are some success stories already in that we now have four people on the team that know dbt (3 of whom are here today to help out and learn more).
 
-## Table of Contents
-
-0. Download & Install Software
-1. Environment Set Up (30 min)
-2. Learn dbt commands & create models
-3. Exercises
-4. Additional Resources
-3. dbt+msft scope
 
 
-## 0. Download & Install Software
+## Set Up Local Environment
+
+:::note
+
+please see our new, comprehensive [guide for setting up VSCode](guides/vscode_setup.md). It simplifies this set up somewhat
+
+:::
+
+This is the biggest hurdle to using dbt right now. IMHO, it isn't that big. Fishtown Analytics has a web-based IDE tool that you'll see being used in the training course. The advantage is that you can write dbt models and run them in the same window.
+
+There may be an issue where your terminal can't find Git or Anaconda, in which case we made need to add to your system environment's PATH variable.
+
+Here we'll be using a version of the same repo that Fishtown uses for their training.
+
+### Download & Install Software
 
 Ahead of the call if you could please download and install the following (if you haven’t already):
 
@@ -28,16 +34,26 @@ Ahead of the call if you could please download and install the following (if you
 - [Microsoft ODBC Driver 17](https://www.microsoft.com/en-us/download/details.aspx?id=56567)
 - [VSCode](https://code.visualstudio.com/Download)
 - [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) and/or [SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
-<!-- - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) -->
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 
+### Set up VSCode
 
-## 1. Environment Set Up
+1. After cloning, you should be prompted to install some extensions -- you should! Click on the 5th icon from the top in the left window pane. Or use the shortcut (`CTRL + SHIFT + X`). Type in the following extensions in the search bar and install:
+   * `python extension`
+   * `better jinja`
+   * `vscode-dbt`
+   * `rainbow csv`
 
-This is the biggest hurdle to using dbt right now. IMHO, it isn't that big. Fishtown Analytics has a web-based IDE tool that you'll see being used in the training course. The advantage is that you can write dbt models and run them in the same window.
-
-There may be an issue where your terminal can't find Git or Anaconda, in which case we made need to add to your system environment's PATH variable.
-
-Here we'll be using a version of the same repo that Fishtown uses for their training.
+2. Create your conda environment and install the necessary packages. The good thing is that you can reuse this environment for future dbt work and this is only a one-time process.
+   1. Open a new terminal with the shortcut `` CTRL + SHIFT + ` ``.
+   2. Click "Allow" when a pop up appears asking if you allow the workspace to modify your terminal shell.
+      * If you see "PS" next to your current directory on the command line, that means you're using powershell and we don't want to use that. The fix: open a new terminal again and you should now be using cmd.
+   3. Since you already installed Anaconda, you should see `conda activate base` run automatically and (base) should be next to your current directory.
+   4. Create a new, empty environment by running `conda create -n dbtenv python=3.7.9`. The name of your environment is `dbtenv` and we are using Python version 3.7.9. Type `y` then `Enter` when the command line asks to proceed.
+   5. Run `conda activate dbtenv` in the command line to activate your new environment.
+   5. Install the following packages:
+      * Run `pip install dbt-sqlserver`
+      * Run `pip install azure-cli==2.21.0`
 
 ### Clone demo repo
 
@@ -67,30 +83,7 @@ Here we'll be using a version of the same repo that Fishtown uses for their trai
 				database: Marketing_Dev
 				authentication: CLI
 	```
-### VSCode
 
-:::note
-
-please see our new, comprehensive [guide for setting up VSCode](guides/vscode_setup.md). It simplifies this set up somewhat
-
-:::
-
-1. After cloning, you should be prompted to install some extensions -- you should! Click on the 5th icon from the top in the left window pane. Or use the shortcut (`CTRL + SHIFT + X`). Type in the following extensions in the search bar and install:
-   * `python extension`
-   * `better jinja`
-   * `vscode-dbt`
-   * `rainbow csv`
-
-2. Create your conda environment and install the necessary packages. The good thing is that you can reuse this environment for future dbt work and this is only a one-time process.
-   1. Open a new terminal with the shortcut `` CTRL + SHIFT + ` ``.
-   2. Click "Allow" when a pop up appears asking if you allow the workspace to modify your terminal shell.
-      * If you see "PS" next to your current directory on the command line, that means you're using powershell and we don't want to use that. The fix: open a new terminal again and you should now be using cmd.
-   3. Since you already installed Anaconda, you should see `conda activate base` run automatically and (base) should be next to your current directory.
-   4. Create a new, empty environment by running `conda create -n dbtenv python=3.7.9`. The name of your environment is `dbtenv` and we are using Python version 3.7.9. Type `y` then `Enter` when the command line asks to proceed.
-   5. Run `conda activate dbtenv` in the command line to activate your new environment.
-   5. Install the following packages:
-      * Run `pip install dbt-sqlserver`
-      * Run `pip install azure-cli==2.21.0`
 
 ### Connect to database
 
@@ -102,7 +95,7 @@ please see our new, comprehensive [guide for setting up VSCode](guides/vscode_se
    1. Run `dbt debug`. This command tries to connect to the database using the parameters from `profiles.yml` and `dbt_project.yml`.
       * You connected successfully if you see all green and no error messages!
 
-### Azure Data Studio or SSMS
+### Set up Azure Data Studio or SSMS
 
 1. Last step in the set-up is to log in to the database. **Below are instructions for Azure Data Studio, but if you're receving an error message you can try on SQL Server Management Studio (SSMS) too. Instructions are very similar!**
    1. Open Azure Data Studio and click on the first icon on the left side panel called "Connections".
@@ -122,14 +115,11 @@ please see our new, comprehensive [guide for setting up VSCode](guides/vscode_se
    3. If you're wondering why you're not seeing your tables/views show up after running dbt commands in VSCode, you can right click on the **Tables** or **Views** folder and click "Refresh".
       * You can also do this to the server itself as well, but this might take longer.
 
+## Tutorial
 
-## 2. Learn dbt commands and create models
+Here's a walk-through tutorial of using dbt below as well as some exercises for you to try on your own. There are also additional resources found at the end of this section. Happy modeling!
 
-Try the walk-through tutorial of using dbt below as well as some exercises for you to try on your own. There are also additional resources found at the end of this section. Happy modeling!
-
-### Tutorial
-
-#### 0. Get your raw tables in the database
+### Get your raw tables in the database
 
 Usually when building a data warehouse, you would connect to an external data source where the raw tables live and bring those tables into the dbt workspace to do your transormations. For the purpose of a (hopefully) simpler tutorial on understanding the basic dbt commands and framework, we will be using seeds.
 
@@ -138,7 +128,7 @@ These seeds are located under `jaffle_shop\data`. **You might be wondering: What
 1. Let's load the CSV files into our data warehouse. Run `dbt seed` in the command line.
    * Once you've gotten the green "Completed Successfully" message, you can view the tables you just materialized in Azure Data Studio or SSMS. They are generated as **Tables** and can be found in the **Tables** folder with your schema in the name. You should see 3 tables get generated: `raw_customers`, `raw_orders`, and `raw_payments`
 
-#### 1. Create models
+### Create models
 
 There are 3 different checkpoints for models in the dbt framework, listed below. To read more on how dbt projects are structured, check out this [article](https://discourse.getdbt.com/t/how-we-structure-our-dbt-projects/355) by Claire Carroll, dbt Community Manager.
 * **Sources** - raw data, i.e. the tables we created in the previous step
@@ -163,7 +153,7 @@ Let's make some dbt models! The following steps will show the journey line of ho
 4. Congrats! You finished creating your first dbt project! :tada:
    1. Run `dbt run`. Without the model parameter like in previous examples, this allows **all** the SQL files under the `models` folder to get materialized in SQL Server. Now, `customers` and `orders` are both materialized with one command, along with their parent tables.
 
-## 3. Exercises
+## Exercises
 
 Now that you have a basic understanding of how to create models, lets make some on your own while flexing your SQL muscles!
 
@@ -178,15 +168,13 @@ Create models that solve each of the following scenarios. For each of the models
 2. What were the most recent dates of each order status? Order the results by date.
 4. On average, how much does each customer spend per order? Please show the first name and last name initial in one column and order it by that column alphabetically.
 
-## 4. Additional Resources
+## Additional Resources
 
 - [Claire's classic text + video walkthrough](https://docs.getdbt.com/tutorial/setting-up) - check this out if you want to learn how to set up and deploy a dbt project using BigQuery (flip through the modules under "Getting Started" on the left)
 - [Kyle's amazing course](https://courses.getdbt.com) - this course shows you how to use dbt cloud and goes over some fundamental concepts around dbt
 - [thorough docs worth going through](https://docs.getdbt.com/docs/building-a-dbt-project/projects) - these are great overviews about modeling, testing, documentation, sources, and other additional topics we did not cover (flip through the topics under "Building a dbt Project" on the left)
-
-
-## 5. dbt+msft better together
-
+- [dbt-msft's better together pitch](./better_together_pitch.md)
+- [deploying dbt with Azure DevOps Pipelines](./ado_pipelines_example.md)
 - [the dbt viewpoint](https://docs.getdbt.com/docs/about/viewpoint)
 - [dbt-utils](https://github.com/fishtown-analytics/dbt-utils)
 - production workflow
