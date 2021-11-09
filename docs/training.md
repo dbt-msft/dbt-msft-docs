@@ -39,7 +39,7 @@ There may be an issue where your terminal can't find Git or Anaconda, in which c
 
 Here we'll be using a version of the same repo that Fishtown uses for their training.
 
-### VSCode
+### Clone demo repo
 
 1. Clone [this repo](https://github.com/dbt-labs/jaffle_shop) in VSCode
    1. Open VSCode and type (`CTRL + Shift + P`) to access the command palette located at the top.
@@ -48,19 +48,14 @@ Here we'll be using a version of the same repo that Fishtown uses for their trai
    4. Choose which folder you want your code to go in and click "Select Repository Location". I typically have all my repositories in `C:\Code`.
    6. A pop up message should appear on the lower right of VSCode asking if you would like to open the cloned repository. Click "Open".
    6. Go to the dbt_crash_course branch by clicking on the bottom left button on the window (it should say main or master) and choosing the dbt_crash_course branch.
-2. After cloning, you should be prompted to install some extensions -- you should! Click on the 5th icon from the top in the left window pane. Or use the shortcut (`CTRL + SHIFT + X`). Type in the following extensions in the search bar and install:
-   * `python extension`
-   * `better jinja`
-   * `vscode-dbt`
-   * `rainbow csv`
-3. Create a new branch from the main branch by clicking on the bottom left button on the blue ribbon of VSCode (it should probably say "main"). Then click on "Create new branch from...". Name your branch (maybe to your initials e.g. "cl_dbttraining") and hit Enter. Click on "origin/main".
+2. Create a new branch from the main branch by clicking on the bottom left button on the blue ribbon of VSCode (it should probably say "main"). Then click on "Create new branch from...". Name your branch (maybe to your initials e.g. "cl_dbttraining") and hit Enter. Click on "origin/main".
 3. Now we need to set up `profiles.yml` to connect to our database.
    1. Create new directory called `.dbt` under your user folder (`C:\Users\your_user_folder`).
    2. Add the `.dbt` folder to your workspace in VSCode by clicking on File -> Add  Folder to Workspace... -> your new `.dbt` folder -> Add.
    3. Create a new file into the new folder by right clicking the folder and clicking on New File. Name the file `profiles.yml`.DF
    4. Go to the new file and paste the following code below. Edit the `schema` field to your initials or anything that serves as an identifier for your work. Then save your changes! (`CTRL + S`)
-   
-	```jsx title="profiles.yml"
+
+	```yml title="profiles.yml"
 	jaffle_shop:
 			target: dev
 			outputs:
@@ -72,7 +67,21 @@ Here we'll be using a version of the same repo that Fishtown uses for their trai
 				database: Marketing_Dev
 				authentication: CLI
 	```
-4. Create your conda environment and install the necessary packages. The good thing is that you can reuse this environment for future dbt work and this is only a one-time process.
+### VSCode
+
+:::note
+
+please see our new, comprehensive [guide for setting up VSCode](guides/vscode_setup.md). It simplifies this set up somewhat
+
+:::
+
+1. After cloning, you should be prompted to install some extensions -- you should! Click on the 5th icon from the top in the left window pane. Or use the shortcut (`CTRL + SHIFT + X`). Type in the following extensions in the search bar and install:
+   * `python extension`
+   * `better jinja`
+   * `vscode-dbt`
+   * `rainbow csv`
+
+2. Create your conda environment and install the necessary packages. The good thing is that you can reuse this environment for future dbt work and this is only a one-time process.
    1. Open a new terminal with the shortcut `` CTRL + SHIFT + ` ``.
    2. Click "Allow" when a pop up appears asking if you allow the workspace to modify your terminal shell.
       * If you see "PS" next to your current directory on the command line, that means you're using powershell and we don't want to use that. The fix: open a new terminal again and you should now be using cmd.
@@ -82,11 +91,14 @@ Here we'll be using a version of the same repo that Fishtown uses for their trai
    5. Install the following packages:
       * Run `pip install dbt-sqlserver`
       * Run `pip install azure-cli==2.21.0`
-5. Log into Azure. We want to connect to the database via Azure CLI.
+
+### Connect to database
+
+1. Log into Azure. We want to connect to the database via Azure CLI.
    1. Run `az login`
    2. In the window that popped up, sign in with your Avanade credentials. Once signed, in you can close out of that window. If the window says that an error occurred and is directing you to a localhost url, you can try logging in using `az login --use-device-code`. This will provide you instructions to go to a general url and paste in the code provided on the command line.
    3. If you belong to multiple subscriptions, you must specify the subscription by running `az account set --subscription ff2e23ae-7d7c-4cbd-99b8-116bb94dca6e`. This is the ID for AzureCloud.
-6. Let's verify that we can connect to the database successfully.
+2. Let's verify that we can connect to the database successfully.
    1. Run `dbt debug`. This command tries to connect to the database using the parameters from `profiles.yml` and `dbt_project.yml`.
       * You connected successfully if you see all green and no error messages!
 
