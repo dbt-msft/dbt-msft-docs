@@ -136,6 +136,8 @@ There are huge UX gains left on the table with such disparate syntax across prod
 
 ## 4) Nested CTEs
 
+For a deep dive, see this [entire treatise on nested CTEs](../nested_CTES.md) elsewhere on the site.
+
 As of now,  dbt data tests that are defined with CTEs fail, as the user-defined data test is itself wrapped into another CTE when executed. There's a way to fix this, but it isn't pretty. See [#25](https://github.com/dbt-msft/dbt-synapse/issues/25)
 
 To clarify, this isn't an ask for recursive CTEs, just nested ones. Here's [an issue opened on the SQL docs repo](https://github.com/MicrosoftDocs/sql-docs/issues/5698)
