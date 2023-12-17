@@ -42,7 +42,7 @@ One final benefit is that closer API alignment would drastically reduce the code
 ## 1) [Table Valued Constructor](https://docs.microsoft.com/en-us/sql/t-sql/queries/table-value-constructor-transact-sql)
 
 
-> [relevant Uservoice Idea](https://feedback.azure.com/forums/307516-azure-synapse-analytics/suggestions/43031034-add-support-for-the-table-value-constructor)
+> [relevant Uservoice Idea](https://feedback.azure.com/d365community/idea/b597e1af-0a25-ec11-b6e6-000d3a4f07b8)
 
 This is critical for the `dbt seed` command which loads a local csv into the the database.
 
